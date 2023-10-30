@@ -6,7 +6,6 @@ if ('serviceWorker' in navigator) {
       reg = await navigator.serviceWorker.register('/sw.js', { type: "module" });
 
       console.log('Service worker registrada! 😎', reg);
-      postNews()
     } catch (err) {
       console.log('😥 Service worker registro falhou: ', err);
     }
@@ -31,7 +30,7 @@ function cameraStart() {
       cameraView.srcObject = stream;
     })
     .catch( function (error) { 
-      console.error("Ocorreu um Erro.", error);
+      console.error("Ocorreu um Erro.:" + error);
     });
 }
 
