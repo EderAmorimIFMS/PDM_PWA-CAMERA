@@ -38,10 +38,10 @@ function cameraStart() {
 // Função para tirar foto
 cameraTrigger.onclick = function () {
   cameraSensor.width = cameraView.videoWidth; 
-  cameraSensor.height cameraView.videoHeight; 
-  cameraSensor.getContext("2d").drawImage(cameraView, 0, 
-    cameraoutput.src = cameraSensor.toDataURLI "Laage/webp");
-    cameraOutput.classList.add("taken");
+  cameraSensor.height = cameraView.videoHeight; 
+  cameraSensor.getContext("2d").drawImage(cameraView, 0, 0)
+    cameraoutput.src = cameraSensor.toDataURL("image/webp");
+    cameraOutput.classList.add("taken");  
 }
 
 // carrega isagem de camera quando a Janela carregar 
