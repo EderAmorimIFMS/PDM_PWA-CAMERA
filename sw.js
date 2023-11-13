@@ -22,13 +22,13 @@ warmStrategyCache({
   urls: ['/index.html', '/'],
   strategy: pageCache,
 });
-
 //registrando a rota
 registerRoute(({ request }) => request.mode === 'navigate', pageCache);
 
-// configurando cache de assets
-registerRoute(
-  ({ request }) => ['style', 'script', 'worker'].includes(request.destination),
+
+registerRoute(// configurando cache de assets
+  ({ request }) => ['style', 'script', 'worker']
+    .includes(request.destination),
   new StaleWhileRevalidate({
     cacheName: 'asset-cache',
     plugins: [
@@ -39,11 +39,9 @@ registerRoute(
   }),
 );
 
-// configurando offline fallback
-offlineFallback({
+offlineFallback({// configurando offline fallback
   pageFallback: '/offline.html',
 });
-
 
 const imageRoute = new Route(({ request }) => {
   return request.destination === 'image';
@@ -55,5 +53,5 @@ const imageRoute = new Route(({ request }) => {
     })
   ]
 }));
-
 registerRoute(imageRoute);
+

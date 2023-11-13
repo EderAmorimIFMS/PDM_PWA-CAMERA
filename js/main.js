@@ -12,36 +12,35 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-// configurando as constraintes do video stream 
-var constraints = { video: { facingMode: "user" }, audio: false };
 
-//capturando os elementos em tela
+// configurando as constraintes do video stream
+var constraints = { video: { facingMode: "user" }, audio: false };
+// capturando os elementos em tela
 const cameraView = document.querySelector("#camera--view"),
-  cameraoutput = document.querySelector("#camera-output"),
+  cameraOutput = document.querySelector("#camera--output"),
   cameraSensor = document.querySelector("#camera--sensor"),
   cameraTrigger = document.querySelector("#camera--trigger")
 
-//Estabelecendo o acesso a camera inicializando a visualização
+//Estabelecendo o acesso a camera e inicializando a visualização
 function cameraStart() {
   navigator.mediaDevices
     .getUserMedia(constraints)
-    .then( function (stream) {
-      track = stream.getTracks()[0];
+    .then(function (stream) {
+      let track = stream.getTracks[0]
       cameraView.srcObject = stream;
     })
-    .catch( function (error) { 
-      console.error("Ocorreu um Erro.:" + error);
+    .catch(function (error) {
+      console.error("Ocorreu um Erro.", error);
     });
 }
 
 // Função para tirar foto
 cameraTrigger.onclick = function () {
-  cameraSensor.width = cameraView.videoWidth; 
-  cameraSensor.height = cameraView.videoHeight; 
-  cameraSensor.getContext("2d").drawImage(cameraView, 0, 0)
-    cameraoutput.src = cameraSensor.toDataURL("image/webp");
-    cameraOutput.classList.add("taken");  
-}
-
-// carrega isagem de camera quando a Janela carregar 
+  cameraSensor.width = cameraView.videoWidth;
+  cameraSensor.height = cameraView.videoHeight;
+  cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
+  cameraOutput.src = cameraSensor.toDataURL("image/webp");
+  cameraOutput.classList.add("taken");
+};
+// carrega imagem de camera quando a janela carregar
 window.addEventListener("load", cameraStart, false);
