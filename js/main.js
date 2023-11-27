@@ -22,6 +22,8 @@ const cameraView = document.querySelector("#camera--view"),
   cameraTrigger = document.querySelector("#camera--trigger"),
   cameraSwitcher = document.querySelector("#camera--switcher");
 
+const fotos = []
+
 //Estabelecendo o acesso a camera e inicializando a visualização
 function cameraStart() {
   navigator.mediaDevices
@@ -56,8 +58,8 @@ cameraSwitcher.onclick = function() {
   constraints = { video: { facingMode: camMode }, audio: false };
   console.log(constraints);
   cameraStart();
-
 }
+
 
 // carrega imagem de camera quando a janela carregar
 window.addEventListener("load", cameraStart, false);
